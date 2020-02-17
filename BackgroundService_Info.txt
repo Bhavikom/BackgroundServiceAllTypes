@@ -1,0 +1,49 @@
+* These are the three different types of services:
+
+	Foreground
+
+	Background
+	
+	Bound
+
+
+* Service methods
+
+	onStartCommand()
+	onBind()
+	onCreate()
+	onDestroy()
+
+* important notes about service
+
+	You can ensure that your service is available to only your app by including the android:exported attribute and setting it to false. This effectively stops other apps from 	starting your 	service, even when using an explicit intent.
+
+	A service runs in the main thread of its hosting process; the service does not create its own thread and does not run in a separate process unless you specify otherwise. If your service is going to perform any CPU-intensive work or blocking operations, such as MP3 playback or networking, you should create a new thread within the service to complete that work. By using a separate thread, you can reduce the risk of Application Not Responding (ANR) errors, and the application's main thread can remain dedicated to user interaction with your activities.
+	
+	
+* Traditionally, there are two classes you can extend to create a started service:
+
+	Service: 
+		If, however, you require your service to perform multi-threading (instead of processing start requests through a work queue), you can extend the Service
+		suppport multi-threading
+		
+	IntentService
+		This is a subclass of Service that uses a worker thread to handle all of the start requests, one at a time. This is the best option if you don't require that your service handle multiple requests simultaneously. Implement onHandleIntent(), which receives the intent for each start request so that you can complete the background work.
+		
+* onStartCommand() returns following constants
+	
+	START_NOT_STICKY
+		
+		If the system kills the service after onStartCommand() returns, do not recreate the service unless there are pending intents to deliver. This is the safest option to avoid running your service when not necessary and when your application can simply restart any unfinished jobs
+		
+	START_STICKY
+	
+		If the system kills the service after onStartCommand() returns, recreate the service and call onStartCommand(), but do not redeliver the last intent. Instead, the system calls onStartCommand() with a null intent unless there are pending intents to start the service. In that case, those intents are delivered. This is suitable for media players (or similar services) that are not executing commands but are running indefinitely and waiting for a job.
+		
+* Running a service in the foreground
+
+	A foreground service is a service that the user is actively aware of and isn't a candidate for the system to kill when low on memory. A foreground service must provide a notification for the status bar, which is placed under the Ongoing heading. This means that the notification cannot be dismissed unless the service is either stopped or removed from the foreground.
+	
+	Apps that target Android 9 (API level 28) or higher and use foreground services must request the FOREGROUND_SERVICE permission. This is a normal permission, so the system automatically grants it to the requesting app
+	
+	If an app that targets API level 28 or higher attempts to create a foreground service without requesting FOREGROUND_SERVICE, the system throws a SecurityException.

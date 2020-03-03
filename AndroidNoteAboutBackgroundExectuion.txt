@@ -1,0 +1,79 @@
+***** Service Limitations ******* 
+=> Service class will no longer work in oreo version.startService() will throw exception while your app is in background or idle.
+=> it is always legal to call startForegroundService() instead of startService.
+=> We should also 
+
+*** JobService ****
+
+=> JobService is replacement for Service class since lollipop
+
+=> JobService will execute work on specific condition not on specific time interval
+
+=> Min TimeInterval for JobService is 15 Min sincce api 25
+
+	now the question is How to Shedule job every 30 seconds or arount it
+	what is startJob and stopJob boolen parameter
+
+=> so If we want to shedule job on regular interval JobService is not right choise
+
+*** FusedLcoation Api
+
+=> Background Location Limits : - In an effort to reduce power consumption, Android 8.0 (API level 26) limits how frequently background apps    can    retrieve the user's current location. Apps can receive location updates only a few times each hour
+=> By using the batched version of FLP, however, you have access to more time-frequent location history after your app receives a batch update, which    also occurs only a few times each hour.
+
+*** The system distinguishes between foreground and background apps when 
+
+	It has a visible activity, whether the activity is started or paused.
+	It has a foreground service.
+	Another foreground app is connected to the app, either by binding to one of its services or by making use of one of its content providers. For 	example, if a foreground app binds to any of the following components within another app, that other app is considered to be in the 		foreground:
+	Input method editor (IME)
+	Wallpaper service
+	Notification listener
+	Voice or text service
+	
+	If none of those conditions is true, the app is considered to be in the background.
+
+*** Geofencing
+
+	Background apps can receive geofencing transition events more frequently than updates from the Fused Location Provider.
+	The average responsiveness for a geofencing event is every couple of minutes or so.
+
+**** Broadcast receiver limitations
+
+=> statically defined broadcast receiver will no longer receive those broadcasts.
+=> apps that target the API level 26 or higher can no longer register broadcast receivers for implicit broadcasts in their manifest
+=> Apps can continue to register listeners for the following broadcasts, no matter what API level the apps target.
+	ACTION_LOCKED_BOOT_COMPLETED, ACTION_BOOT_COMPLETED
+	ACTION_USER_INITIALIZEACTION_LOCALE_CHANGED
+	ACTION_LOCALE_CHANGED
+	ACTION_TIMEZONE_CHANGED
+	ACTION_NEXT_ALARM_CLOCK_CHANGED
+	ACTION_LOCALE_CHANGED
+	ACTION_USB_ACCESSORY_ATTACHED
+	ACTION_USB_ACCESSORY_DETACHED
+	ACTION_USB_DEVICE_ATTACHED
+	ACTION_USB_DEVICE_DETACHED
+	ACTION_CONNECTION_STATE_CHANGED
+	ACTION_CONNECTION_STATE_CHANGED
+	ACTION_ACL_CONNECTED
+	ACTION_ACL_DISCONNECTED
+	ACTION_CARRIER_CONFIG_CHANGED
+	ACTION_PHONE_STATE_CHANGED
+	ACTION_PHONE_ACCOUNT_REGISTERED
+	ACTION_PHONE_ACCOUNT_UNREGISTERED
+	LOGIN_ACCOUNTS_CHANGED_ACTION
+	ACTION_ACCOUNT_REMOVED
+	ACTION_PACKAGE_DATA_CLEARED
+	ACTION_PACKAGE_FULLY_REMOVED
+	ACTION_NEW_OUTGOING_CALL
+	ACTION_DEVICE_OWNER_CHANGED
+	ACTION_EVENT_REMINDER
+	ACTION_MEDIA_MOUNTED, ACTION_MEDIA_CHECKING, ACTION_MEDIA_UNMOUNTED, ACTION_MEDIA_EJECT, ACTION_MEDIA_UNMOUNTABLE, ACTION_MEDIA_REMOVED, 	ACTION_MEDIA_BAD_REMOVAL
+	SMS_RECEIVED_ACTION, WAP_PUSH_RECEIVED_ACTION
+=> to work with receiver in oreo it has to be explicit receiver.
+=> Ex. Context.registerReciever() will work bcoze you have to unRegister() it on Destroy.
+
+background option
+1. geofance
+2. alarm
+3. workmanager

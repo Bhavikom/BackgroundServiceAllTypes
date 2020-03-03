@@ -1,0 +1,44 @@
+***** create alarm app running in background - how alarm work
+	create repeating alarm == done
+	choose time picker and set alarm at specific time == done
+	snooz alarm == repeating is snooze
+	stop alarm 
+	alarm with notification == done
+	and navigate to screen 
+
+
+****** create service and foreground service example 
+
+***** question solution = 
+=> what is wake lock
+=> what is pending intent
+=> what is whitelist in android
+=> what is wakefullbroadcast receiver
+=> what is jobshedular,jobservice,jobintentservice and difference between service-jobservice,intentservice-jobintentservice.
+=> what is service,intent service,Bind Service,Bind service and now what is the use of service in oreo version as is will not work in doze mode
+=> keep in mind to make battery saver app rather that consuming lots of battery.how to save battery
+=> what is broadcast receiver
+=> keep download running even if app is killed from recent
+
+****** Temporory option of doze mode
+=> jobshedular - drawable api level > 21 supported
+=> firebase
+=> synchadapter
+=> forground service
+=> alarmmanager
+=> workmanager
+=> GCM Network Manager
+
+****** permenent Option to avoid doze mode 
+=> can use forground service but notification will show
+=> can use Firebase dispature But this will work only once in every 15 minutes.
+=> can use Alarm manager(best option) but But the default function which we were using in older versions setExact() will not work in Android Versions above 6. Android has introduced two new methods from Marshmellow onwards, setAndAllowWhileIdle(), setExactAndAllowWhileIdle()) which will fire even in Doze mode (more than once per 9 minutes per app). But if our apps requirement is to call some API in every 1 or 2 minutes then we should swift off the doze mode.
+	A repeating alarm is a relatively simple mechanism with limited flexibility. It may not be the best choice for your app, particularly if you 	need to trigger network operations. A poorly designed alarm can cause battery drain and put a significant load on servers.
+
+	alarm  repeat time should be minimum one minute
+
+***** WakefulBroadcastReceiver Deprecated in API level 26.1.0.
+
+	As of Android O, background check restrictions make this class no longer generally useful. (It is generally not safe to start a service from 	the receipt of a broadcast, because you don't have any guarantees that your app is in the foreground at this point and thus allowed to do 	so.) Instead, developers should use android.app.job.JobScheduler to schedule a job, and this does not require that the app hold a wake lock 	while doing so (the system will take care of holding a wake lock for the job).
+
+***** SERVICE WILL NOT WORK WHEN PHONE IN DOZE MODE

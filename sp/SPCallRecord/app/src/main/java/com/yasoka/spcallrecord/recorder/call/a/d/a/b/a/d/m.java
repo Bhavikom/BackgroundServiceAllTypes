@@ -1,0 +1,21 @@
+package com.yasoka.spcallrecord.recorder.call.a.d.a.b.a.d;
+
+/* compiled from: com.google.firebase:firebase-iid@@20.0.2 */
+final class m extends l {
+
+    /* renamed from: a reason: collision with root package name */
+    private final k f467a = new k();
+
+    m() {
+    }
+
+    public final void a(Throwable th, Throwable th2) {
+        if (th2 == th) {
+            throw new IllegalArgumentException("Self suppression is not allowed.", th2);
+        } else if (th2 != null) {
+            this.f467a.a(th).add(th2);
+        } else {
+            throw new NullPointerException("The suppressed exception cannot be null.");
+        }
+    }
+}

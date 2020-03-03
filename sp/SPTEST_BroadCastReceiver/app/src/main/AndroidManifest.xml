@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.louis383.servicetest">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- to use call related services -->
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <!-- Needed only if your calling app reads numbers from the `PHONE_STATE`
+         intent action. -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- To use SMS based services -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".ExampleBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.telecom.ConnectionService" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+            <!--<intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>-->
+            <!--<intent-filter>
+                &lt;!&ndash;<action android:name="android.intent.action.USER_PRESENT"/>&ndash;&gt; &lt;!&ndash; work &ndash;&gt;
+                &lt;!&ndash;<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />&ndash;&gt; &lt;!&ndash; work&ndash;&gt;
+                &lt;!&ndash;<action android:name="android.intent.action.BOOT_COMPLETED"/>&ndash;&gt; &lt;!&ndash; work &ndash;&gt;
+                &lt;!&ndash;<action android:name="android.intent.action.QUICKBOOT_POWERON"/>&ndash;&gt; &lt;!&ndash; work&ndash;&gt;
+
+                <action android:name="android.intent.action.PHONE_STATE" />
+
+                &lt;!&ndash;<action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name= "android.intent.action.SCREEN_OFF"/> will not work &ndash;&gt;
+
+                &lt;!&ndash;<category android:name="android.intent.category.DEFAULT"/>&ndash;&gt;
+
+                &lt;!&ndash;<action android:name="android.intent.action.REBOOT"/>&ndash;&gt;
+                &lt;!&ndash;<action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.ANSWER"/>
+                <action android:name="android.intent.action.CALL_BUTTON"/>
+                <action android:name= "android.intent.action.NEW_OUTGOING_CALL"/>
+                <action android:name="android.intent.action.HEADSET_PLUG" />&ndash;&gt;
+            </intent-filter>-->
+        </receiver>
+
+    </application>
+
+</manifest>

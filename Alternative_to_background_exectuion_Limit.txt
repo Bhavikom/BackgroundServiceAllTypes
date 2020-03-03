@@ -1,0 +1,31 @@
+(1) foreground service with notification
+(2) use broadcast receiver to start service again and again
+(3) user broadcast receiver to listen event and start services
+(4) firebasejobdispatcher
+(5) jobchedular and jobservice
+(6) alarmmanager
+(7) GCM
+(8) synch adapter
+(9) wake lock
+(10) workmanager
+
+* never use
+
+(1) jobschedular or jobservice or jobintentservice
+
+my way
+use alarmmanager to fire
+use broadcast receiver to fire
+startservice on fire
+
+
+
+sources
+
+youtube
+android aresnal
+github
+google
+statckoverflow
+quara
+android online help

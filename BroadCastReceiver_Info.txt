@@ -1,0 +1,34 @@
+* Two types of BroadcastReceiver 
+
+	(1) Implicit
+	
+		An implicit broadcast is one that does not target your application specifically so it is not exclusive to your application. To register for one, you need to use an IntentFilter and declare it in your manifest. You need to do all of this because the Android operating system goes over all the declared intent filters in your manifest and sees if there is a match. Because of this behavior, implicit broadcasts do not have a target attribute. An example for an implicit broadcast would be an action of an incoming SMS message
+		
+	(2) Explicit
+	
+		An explicit broadcast is one that is targeted specifically for your application on a component that is known in advance. This happens due to the target attribute that contains the application’s package name or a component class name
+		
+* Two ways to declare BroadcastReceiver
+
+	(1) Static
+	
+		By declaring one in your AndroidManifest.xml file with the <receiver> tag
+		
+		<receiver android:name=".YourBrodcastReceiverClass"  android:exported="true">
+		<intent-filter>
+			<!-- The actions you wish to listen to, below is an example -->
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+		</intent-filter>
+		</receiver>
+		
+		You will notice that the broadcast receiver declared above has a property of exported=”true”. This attribute tells the receiver that it can receive broadcasts from outside the scope of the application.
+		
+	(2) Dynamic
+	
+		by registering an instance with registerReceiver (what is known as context registered)
+		
+		BroadcastReceiver myBroadcastReceiver = new MyBroadcastReceiver();
+		IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+		filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+		this.registerReceiver(myBroadcastReceiver, filter);
+		

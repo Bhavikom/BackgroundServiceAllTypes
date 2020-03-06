@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">OpenCore-Amr-Android</string>
+
+    <string name="record_start">Start Recorder</string>
+    <string name="record_stop">Stop Recorder</string>
+
+    <string name="decode_start">Start Decode</string>
+    <string name="decode_stop">Stop Decode</string>
+    <string name="accessibility_service_name">OpenCore-Amr-Android</string>
+    <string name="accessibility_service_desc_2">"Allows Cube ACR to record calls in other apps (e.g. Skype, Viber, WhatsApp) and to detect a caller's number.
+It uses the accessibility events to track which activity is currently on screen (e.g. if a VoIP app is launched) and to get a caller's data to create a call log."</string>
+</resources>
